@@ -6,6 +6,9 @@
 ## checking the cache. If cache exists, cached value is returned; otherwise, 
 ## the inverse matrix is computed.
 
+# Acknowledgement: Base code comes from examples provided by Dr. Peng, the
+# "makeVector" and "cachemean" functions in Coursera R Programming, available at 
+# https://class.coursera.org/rprog-010/human_grading/view/courses/973491/assessments/3/submissions
 
 ## makeCacheMatrix creates a "matrix" object that can cache its inverse.
 ## It contains nested functions that assign and retrieve values for the input
