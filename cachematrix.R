@@ -14,23 +14,23 @@
     ## Output: object with functions to store/obtain input matrix & its inverse
 
 makeCacheMatrix <- function(x = matrix()) {
-    ## Initialize variable to be stored in parent environment:
-    m <- NULL
-    ## set matrix value into parent environment (cache):
-    set <- function(y) {
-        x <<- y
-        m <<- NULL
-    }
-    ## retrieve matrix value:
-    get <- function() x
-    ## set matrix inverse value into parent environment (cache):
-    setinv <- function(solve) m <<- solve    
-    ## retrieve matrix inverse value:
-    getinv <- function() m    
-    ## combine all nested functions into single output object:
-    list(set = set, get = get,
-         setinv = setinv,
-         getinv = getinv)
+    # Initialize variable to be stored in parent environment:
+        m <- NULL
+    # set matrix value into parent environment (cache):
+        set <- function(y) {
+            x <<- y
+            m <<- NULL
+        }
+    # retrieve matrix value:
+        get <- function() x
+    # set matrix inverse value into parent environment (cache):
+        setinv <- function(solve) m <<- solve    
+    # retrieve matrix inverse value:
+        getinv <- function() m    
+    # combine all nested functions into single output object:
+        list(set = set, get = get,
+             setinv = setinv,
+             getinv = getinv)
 }
 
 
@@ -41,20 +41,20 @@ makeCacheMatrix <- function(x = matrix()) {
     ## Output: inverse matrix (either from cache or newly calculated)
 
 cacheSolve <- function(x, ...) {
-    ## retrieve inverse matrix value:
-    m <- x$getinv()
-    ## check if inverse already calculated and present in environment; 
-    ## if yes, cached value is returned:
-    if(!is.null(m)) {
-        message("getting cached data")
-        return(m)
-    }
-    ## else, retrieve matrix value from object created in makeCacheMatrix:
-    data <- x$get()
-    ## solve for inverse matrix value:
-    m <- solve(data, ...)
-    ## place inverse matrix value into parent environment (cache):
-    x$setinv(m)
-    ## Return a matrix that is the inverse of 'x'
-    m
+    # retrieve inverse matrix value:
+        m <- x$getinv()
+    # check if inverse already calculated and present in environment; 
+    # if yes, cached value is returned:
+        if(!is.null(m)) {
+            message("getting cached data")
+            return(m)
+        }
+    # else, retrieve matrix value from object created in makeCacheMatrix:
+        data <- x$get()
+    # solve for inverse matrix value:
+        m <- solve(data, ...)
+    # place inverse matrix value into parent environment (cache):
+        x$setinv(m)
+    # Return a matrix that is the inverse of 'x'
+        m
 }
